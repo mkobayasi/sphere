@@ -1,20 +1,22 @@
 #pragma strict
 
-private var count:int;
+private var degree:float;
 private var speed:Vector3;
+private var slider:Slider;
 
 function Start () {
-    count=0;
+    degree=0;
+    slider=FindObjectOfType(Slider);
 }
 
 function Update () {
 
-    transform.localRotation=Quaternion.AngleAxis(count,Vector3(0,0,1));
-    count++;
+    transform.localRotation=Quaternion.AngleAxis(degree,Vector3(0,0,1));
+    degree+=slider.slider_val*Time.deltaTime;
 
     var enemy=GameObject.FindWithTag("enemy");
      transform.position=
          Vector3.SmoothDamp(transform.position,
    			enemy.transform.position,
-     speed,0.5);
+     speed,(100-slider.slider_val)*0.9);
 }

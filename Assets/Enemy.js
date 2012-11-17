@@ -6,6 +6,7 @@ public var life:int;
 public var life_max:int;
 
 
+
 private var OldPosition:Vector3;
 
 function Start () {
@@ -14,8 +15,8 @@ function Start () {
     while(true)
     {
 
-         var center=GameObject.FindWithTag("enemycenter");
-        var centerscript=center.GetComponent.<EnemyCenter>();
+       
+      
         yield WaitForSeconds(0.5);
 //        if(centerscript.vec==0 && centerscript.speed.magnitude<=1)
 //        {

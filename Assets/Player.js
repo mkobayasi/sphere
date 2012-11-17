@@ -10,14 +10,15 @@ public var life_max:int;
 
 private var OldPlayerPosition:Vector3;
 
-private var balance:float;
+private var slider:Slider;
 
 private var TargetPosX:float;
 private var TargetPosY:float;
 
 function Start ()
 {
-	balance=0;
+    slider=FindObjectOfType(Slider);
+
 
 	SetTarget();
 
@@ -26,9 +27,9 @@ function Start ()
     OldPlayerPosition=transform.position;
     while(true)
     {
-        yield WaitForSeconds(0.5);
-        if(speed.magnitude<=1)//ƒvƒŒƒCƒ„[‚ªŽ~‚Ü‚Á‚Ä‚¢‚½‚ç’e‚ð”­ŽË
-        {
+        yield WaitForSeconds(slider.slider_val*0.01+0.2);
+       // if(speed.magnitude<=1)//ƒvƒŒƒCƒ„[‚ªŽ~‚Ü‚Á‚Ä‚¢‚½‚ç’e‚ð”­ŽË
+       // {
             var enemy= GameObject.FindWithTag("enemy");
             var enemypos:Vector3=enemy.transform.position;
 
@@ -50,7 +51,7 @@ function Start ()
 
             bulletscript3.speed=Quaternion.AngleAxis(-20,Vector3(0,0,1))* vec;
 
-        }
+      //  }
     }
 }
 

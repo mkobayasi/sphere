@@ -15,8 +15,16 @@ function Update () {
     degree+=slider.slider_val*Time.deltaTime;
 
     var enemy=GameObject.FindWithTag("enemy");
+    
+     transform.position=
+         Vector3.SmoothDamp(transform.position,
+   			enemy.transform.position,
+     speed,0.9);    
+    /*
      transform.position=
          Vector3.SmoothDamp(transform.position,
    			enemy.transform.position,
      speed,(100-slider.slider_val)*0.9);
+
+     */
 }

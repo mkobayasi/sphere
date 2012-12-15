@@ -25,11 +25,12 @@ function Start ()
 
     life=life_max;
     OldPlayerPosition=transform.position;
-    while(true)
+  
+     while(true)
     {
+
         yield WaitForSeconds(slider.slider_val*0.01+0.2);
-       // if(speed.magnitude<=1)//ƒvƒŒƒCƒ„[‚ªŽ~‚Ü‚Á‚Ä‚¢‚½‚ç’e‚ð”­ŽË
-       // {
+          if (!enabled) return;
             var enemy= GameObject.FindWithTag("enemy");
             var enemypos:Vector3=enemy.transform.position;
 
@@ -50,21 +51,13 @@ function Start ()
             var bulletscript3=bulletspeed3.GetComponent.<Bullet>();
 
             bulletscript3.speed=Quaternion.AngleAxis(-20,Vector3(0,0,1))* vec;
-
-      //  }
-    }
+           
+     
+    }  
 }
 
 function Update () {
 
-
-
-
-     /*
-    Camera.transform.position.x=transform.position.x;
-    Camera.transform.position.y=transform.position.y;
-    Camera.transform.LookAt(transform.position,e_p);
-    */
        var enemy=GameObject.FindWithTag("enemy");
     transform.LookAt(enemy.transform.position,Vector3(0,0,-1));//“G‚Ì•û‚ðŒü‚­
 
@@ -74,14 +67,25 @@ function Update () {
 
 function OnTriggerEnter(other:Collider)
 {
+
     if(other.tag == "enemy_bullet")
     {
         life--;
-       Destroy(other.gameObject);
+        Destroy(other.gameObject);
 
-        if(life<=0)
+        if(life==0)
+        {
+                
+            GameObject.Find("enemy").GetComponent.<Enemy>().enabled=false;
+            GameObject.Find("enemy_center").GetComponent.<EnemyMove>().enabled=false;
+            GameObject.Find("CameraCenter").GetComponent.<CameraMove>().enabled=false;
+            GameObject.Find("player_life").SetActive(false);
+            GameObject.Find("Player").GetComponent.<Player>().enabled=false;
+            Destroy( GameObject.Find("player_life"));
             Destroy(gameObject);
+        }
     }
+
 }
 
 function SetTarget()

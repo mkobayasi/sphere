@@ -14,12 +14,9 @@ function Start () {
     life=life_max;
     while(true)
     {
+        yield WaitForSeconds(0.1);
+        if (!enabled) return;
 
-       
-      
-        yield WaitForSeconds(0.5);
-//        if(centerscript.vec==0 && centerscript.speed.magnitude<=1)
-//        {
             var bulletspeed:GameObject=Instantiate(bullet,transform.position,transform.rotation);
             var bulletscript=bulletspeed.GetComponent.<Bullet>();
 
@@ -40,8 +37,6 @@ function Start () {
             var bulletscript3=bulletspeed3.GetComponent.<Bullet>();
 
             bulletscript3.speed=Quaternion.AngleAxis(-20,Vector3(0,0,1))* vec;
-
- //       }
     }
 }
 
@@ -54,11 +49,19 @@ function Update () {
 
 function OnTriggerEnter(other:Collider)
 {
-    if(other.tag == "player_bullet")
-    {
-        life--;
-       Destroy(other.gameObject);
-       if(life<=0)
-        Destroy(gameObject);
-    }
+
+        if(other.tag == "player_bullet")
+        {
+            life--;
+           Destroy(other.gameObject);
+           if(life==0)
+           {
+                GameObject.Find("player_center").GetComponent.<PlayerCenter>().enabled=false;
+                GameObject.Find("Player").GetComponent.<Player>().enabled=false;
+                GameObject.Find("enemy_life_center").GetComponent.<Enemy_life>().enabled=false;
+                GameObject.Find("enemy_life_center").SetActive(false);
+                Destroy(gameObject);
+           }
+        }
+
 }

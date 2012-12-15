@@ -24,7 +24,7 @@ function Start () {
 
             var playerpos:Vector3=player.transform.position;
 
-            var vec:Vector3=Vector3.Normalize(playerpos -transform.position )*3;//弾のスピードを調整
+            var vec:Vector3=Vector3.Normalize(playerpos -transform.position )*4;//弾のスピードを調整
 
             bulletscript.speed=vec;//弾のスピードを登録
 
@@ -58,6 +58,9 @@ function OnTriggerEnter(other:Collider)
            {
                 GameObject.Find("player_center").GetComponent.<PlayerCenter>().enabled=false;
                 GameObject.Find("Player").GetComponent.<Player>().enabled=false;
+                GameObject.Find("player_life").SetActive(false);
+
+                GameObject.Find("CameraCenter").GetComponent.<CameraMove>().enabled=false;
                 GameObject.Find("enemy_life_center").GetComponent.<Enemy_life>().enabled=false;
                 GameObject.Find("enemy_life_center").SetActive(false);
                 Destroy(gameObject);

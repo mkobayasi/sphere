@@ -34,7 +34,7 @@ function Start ()
             var enemy= GameObject.FindWithTag("enemy");
             var enemypos:Vector3=enemy.transform.position;
 
-            var vec:Vector3=Vector3.Normalize(enemypos - transform.position)*3;
+            var vec:Vector3=Vector3.Normalize(enemypos - transform.position)*4;
 
 
             var bulletspeed:GameObject=Instantiate(bullet,transform.position+vec*0.5,transform.rotation);
@@ -79,8 +79,12 @@ function OnTriggerEnter(other:Collider)
             GameObject.Find("enemy").GetComponent.<Enemy>().enabled=false;
             GameObject.Find("enemy_center").GetComponent.<EnemyMove>().enabled=false;
             GameObject.Find("CameraCenter").GetComponent.<CameraMove>().enabled=false;
+
+
             GameObject.Find("player_life").SetActive(false);
             GameObject.Find("Player").GetComponent.<Player>().enabled=false;
+            GameObject.Find("enemy_life_center").GetComponent.<Enemy_life>().enabled=false;
+            GameObject.Find("enemy_life_center").SetActive(false);
             Destroy( GameObject.Find("player_life"));
             Destroy(gameObject);
         }

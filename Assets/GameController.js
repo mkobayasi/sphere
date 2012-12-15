@@ -26,11 +26,21 @@ function Start () {
 
        if(player)state="enemy dead";
        else state="player dead";
+
+       yield WaitForSeconds(2);
+
+       state="tap Screen";
     
 }
 
 function Update () {
-    
+    if(state=="tap Screen")
+    {
+      if(Input.GetMouseButtonUp(0))
+      {
+        Application.LoadLevel("title");
+      }
+    }
 }
 
 function OnGUI()
@@ -42,5 +52,8 @@ function OnGUI()
         GUI.Label(Rect(0,0,Screen.width,Screen.height),"You Win",text_style);
     else
      if(state=="player dead")
-        GUI.Label(Rect(0,0,Screen.width,Screen.height),"You Lose",text_style);       
+        GUI.Label(Rect(0,0,Screen.width,Screen.height),"You Lose",text_style);
+    else
+    if(state=="tap Screen")
+        GUI.Label(Rect(0,0,Screen.width,Screen.height),"Tap Screen",text_style); 
 }

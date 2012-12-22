@@ -6,8 +6,17 @@ private var state:String;
 private var player:GameObject;
 private var enemy:GameObject;
 
+
+var PlayerBomb: AudioClip;
+
+var EnemyBomb: AudioClip;
+
+var Audio_flag:System.Boolean;
+
+
 function Start () {
 
+    Audio_flag=false;
     state="wait";
 
     yield WaitForSeconds(2);
@@ -34,6 +43,18 @@ function Start () {
 }
 
 function Update () {
+
+     if(state=="enemy dead")
+        audio.clip=EnemyBomb;
+    else
+     if(state=="player dead")
+        audio.clip=PlayerBomb;
+
+    if((state=="enemy dead" || state=="player dead")&& !Audio_flag)
+    {
+        Audio_flag=true;
+        audio.Play();
+    }
     if(state=="tap Screen")
     {
       if(Input.GetMouseButtonUp(0))

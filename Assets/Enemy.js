@@ -1,10 +1,10 @@
 #pragma strict
+@script RequireComponent(AudioSource)
 
 public var bullet:GameObject;
 
 public var life:int;
 public var life_max:int;
-
 
 
 private var OldPosition:Vector3;
@@ -53,18 +53,23 @@ function OnTriggerEnter(other:Collider)
         if(other.tag == "player_bullet")
         {
             life--;
+            
            Destroy(other.gameObject);
            if(life==0)
            {
+              
                 GameObject.Find("player_center").GetComponent.<PlayerCenter>().enabled=false;
                 GameObject.Find("Player").GetComponent.<Player>().enabled=false;
                 GameObject.Find("player_life").SetActive(false);
 
                 GameObject.Find("CameraCenter").GetComponent.<CameraMove>().enabled=false;
-                GameObject.Find("enemy_life_center").GetComponent.<Enemy_life>().enabled=false;
                 GameObject.Find("enemy_life_center").SetActive(false);
                 Destroy(gameObject);
            }
+
+
+           audio.Play();
         }
+
 
 }

@@ -71,21 +71,20 @@ function OnTriggerEnter(other:Collider)
     if(other.tag == "enemy_bullet")
     {
         life--;
+        audio.Play();
+
         Destroy(other.gameObject);
 
         if(life==0)
         {
                 
-            GameObject.Find("enemy").GetComponent.<Enemy>().enabled=false;
-            GameObject.Find("enemy_center").GetComponent.<EnemyMove>().enabled=false;
-            GameObject.Find("CameraCenter").GetComponent.<CameraMove>().enabled=false;
 
+                GameObject.Find("enemy_center").GetComponent.<EnemyMove>().enabled=false;
+                GameObject.Find("enemy").GetComponent.<Enemy>().enabled=false;
+                GameObject.Find("enemy_life").SetActive(false);
 
-            GameObject.Find("player_life").SetActive(false);
-            GameObject.Find("Player").GetComponent.<Player>().enabled=false;
-            GameObject.Find("enemy_life_center").GetComponent.<Enemy_life>().enabled=false;
-            GameObject.Find("enemy_life_center").SetActive(false);
-            Destroy( GameObject.Find("player_life"));
+                GameObject.Find("CameraCenter").GetComponent.<CameraMove>().enabled=false;
+                GameObject.Find("player_life_center").SetActive(false);
             Destroy(gameObject);
         }
     }

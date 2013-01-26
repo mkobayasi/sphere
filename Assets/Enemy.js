@@ -53,11 +53,12 @@ function OnTriggerEnter(other:Collider)
         if(other.tag == "player_bullet")
         {
             life--;
-            
+            var p:ParticleSystem=GetComponentInChildren(ParticleSystem);
+            p.Emit(20);
            Destroy(other.gameObject);
            if(life==0)
            {
-              
+                GameObject.Find("GameController").GetComponent.<GameController>().transform.position=transform.position;
                 GameObject.Find("player_center").GetComponent.<PlayerCenter>().enabled=false;
                 GameObject.Find("Player").GetComponent.<Player>().enabled=false;
                 GameObject.Find("player_life").SetActive(false);
@@ -70,6 +71,4 @@ function OnTriggerEnter(other:Collider)
 
            audio.Play();
         }
-
-
 }

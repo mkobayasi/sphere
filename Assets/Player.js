@@ -73,12 +73,15 @@ function OnTriggerEnter(other:Collider)
         life--;
         audio.Play();
 
+        var p:ParticleSystem=GetComponentInChildren(ParticleSystem);
+        p.Emit(20);
+
         Destroy(other.gameObject);
 
         if(life==0)
         {
                 
-
+               GameObject.Find("GameController").GetComponent.<GameController>().transform.position=transform.position;
                 GameObject.Find("enemy_center").GetComponent.<EnemyMove>().enabled=false;
                 GameObject.Find("enemy").GetComponent.<Enemy>().enabled=false;
                 GameObject.Find("enemy_life").SetActive(false);

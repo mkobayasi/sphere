@@ -17,6 +17,6 @@ function Update () {
 
 function OnGUI()
 {
-    GUI.Label(Rect(0,0,Screen.width,Screen.height/3),"Title",text_style);
+    GUI.Label(Rect(0,0,Screen.width,Screen.height/3),"SPACE WAR",text_style);
     GUI.Label(Rect(0,0,Screen.width,Screen.height*2/3),"Tap Screen",text_style2); 
 }

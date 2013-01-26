@@ -11,6 +11,8 @@ var PlayerBomb: AudioClip;
 
 var EnemyBomb: AudioClip;
 
+
+
 var Audio_flag:System.Boolean;
 
 
@@ -52,6 +54,10 @@ function Update () {
 
     if((state=="enemy dead" || state=="player dead")&& !Audio_flag)
     {
+
+        var p:ParticleSystem=GetComponentInChildren(ParticleSystem);
+        p.Emit(60);
+
         Audio_flag=true;
         audio.Play();
     }
